@@ -1,0 +1,340 @@
+{
+  "country": {
+    "name": "Malaysia",
+    "states": [
+      {
+        "name": "Pulau Pinang",
+        "districts": [
+          {
+            "name": "Timur Laut",
+            "cities": [
+              {
+                "name": "George Town",
+                "beaches": [
+                  {
+                    "id": "MY-PEN-TML-GEO-001",
+                    "name": "Batu Ferringhi Beach",
+                    "location": {
+                      "city": "George Town",
+                      "district": "Timur Laut",
+                      "state": "Pulau Pinang"
+                    },
+                    "headline": "The Epicentre of Beach Life and Water Sports in Penang",
+                    "sub_headline": "A vibrant stretch of golden sand lined with world-class resorts, bustling night markets, and endless aquatic activities.",
+                    "detailed_description": "Batu Ferringhi is the most famous beach in Penang, offering a long expanse of fine, white sand along the northern coast of the island. By day, it's a hub for water sports, from parasailing and jet-skiing to windsurfing. The beachfront is dotted with international-standard hotels and restaurants. As the sun sets, the area transforms into a lively open-air night market where visitors can find a variety of souvenirs, local crafts, and delicious street food. The scenic view of the Andaman Sea, especially during sunset, makes it a picturesque destination for both relaxation and recreation.",
+                    "images": [
+                      {
+                        "url": "https://upload.wikimedia.org/wikipedia/commons/3/33/33_Batu_Ferringhi_beach%2C_Penang%2C_Malaysia.jpg",
+                        "caption": "A panoramic view of the bustling Batu Ferringhi shoreline."
+                      },
+                      {
+                        "url": "https://upload.wikimedia.org/wikipedia/commons/e/e1/34_Sunset_at_Batu_Ferringhi_beach%2C_Penang%2C_Malaysia.jpg",
+                        "caption": "A stunning sunset over the Andaman Sea at Batu Ferringhi."
+                      },
+                      {
+                        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Parasailer_above_Batu_Ferringhi_beach.jpg/1280px-Parasailer_above_Batu_Ferringhi_beach.jpg",
+                        "caption": "Parasailing is a popular water sport activity at the beach."
+                      }
+                    ],
+                    "geolocation": {
+                      "latitude": 5.473013,
+                      "longitude": 100.245568
+                    },
+                    "links": {
+                      "Maps": "https://www.google.com/maps/place/Batu+Ferringhi+Beach/@5.4744414,100.2464993,16z/data=!3m1!4b1!4m6!3m5!1s0x304ac292c431e66d:0x334465b597d51c45!8m2!3d5.475836!4d100.249219!16s%2Fg%2F121481b7",
+                      "social_media": {
+                        "instagram_tag": "batuferringhi",
+                        "facebook_page": "https://www.facebook.com/BatuFerringhi.Penang/"
+                      }
+                    },
+                    "user_content": {
+                      "comments": [],
+                      "ratings": {
+                        "average": 0,
+                        "count": 0
+                      }
+                    },
+                    "attributes": {
+                      "activities": ["Parasailing", "Jet Skiing", "Swimming", "Horse Riding", "Shopping"],
+                      "amenities": ["Hotels", "Restaurants", "Night Market", "Public Toilets", "Water Sports Operators"],
+                      "best_for": ["Families", "Tourists", "Water Sports Enthusiasts"],
+                      "is_public": true
+                    },
+                    "meta": {
+                      "last_updated": "2025-06-28T22:50:00+08:00",
+                      "source_retrieved": "https://en.wikipedia.org/wiki/Batu_Ferringhi"
+                    }
+                  },
+                  {
+                    "id": "MY-PEN-TML-GEO-002",
+                    "name": "Tanjung Bungah Beach",
+                    "location": {
+                      "city": "George Town",
+                      "district": "Timur Laut",
+                      "state": "Pulau Pinang"
+                    },
+                    "headline": "A Serene Seaside Suburb with a Picturesque Shoreline",
+                    "sub_headline": "Escape the main crowds and enjoy the tranquil waters, home to the iconic floating mosque and various water sports clubs.",
+                    "detailed_description": "Situated between the city proper and Batu Ferringhi, Tanjung Bungah offers a more relaxed beach experience. Once a sleepy fishing village, it has grown into a charming suburb with a mix of modern high-rises and traditional houses. The beach is known for its relatively calm waters, making it a favorite for swimming and kayaking. A major landmark is the Penang Floating Mosque (Masjid Terapung), which offers a stunning sight, especially during high tide. The Penang Water Sports Centre is also located here, offering activities for enthusiasts.",
+                    "images": [
+                      {
+                        "url": "https://upload.wikimedia.org/wikipedia/commons/0/07/Penang_Floating_Mosque_in_2008.jpg",
+                        "caption": "The iconic Floating Mosque at Tanjung Bungah."
+                      },
+                      {
+                        "url": "https://live.staticflickr.com/65535/51659974864_2125026c6e_b.jpg",
+                        "caption": "Kayaks lined up on the shores of Tanjung Bungah."
+                      }
+                    ],
+                    "geolocation": {
+                      "latitude": 5.4659,
+                      "longitude": 100.2834
+                    },
+                    "links": {
+                      "Maps": "https://www.google.com/maps/place/Tanjung+Bungah+Beach/@5.46465,100.283083,17z/data=!3m1!4b1!4m6!3m5!1s0x304ac2e0717c1819:0xdc3653b4b245846a!8m2!3d5.46465!4d100.2856579!16s%2Fg%2F11b7w4y5k7",
+                      "social_media": {
+                        "instagram_tag": "tanjungbungah",
+                        "facebook_page": null
+                      }
+                    },
+                    "user_content": {
+                      "comments": [],
+                      "ratings": {
+                        "average": 0,
+                        "count": 0
+                      }
+                    },
+                    "attributes": {
+                      "activities": ["Swimming", "Kayaking", "Sailing", "Sightseeing"],
+                      "amenities": ["Hotels", "Restaurants", "Water Sports Centre", "Floating Mosque"],
+                      "best_for": ["Relaxation", "Families", "Cultural Sights"],
+                      "is_public": true
+                    },
+                    "meta": {
+                      "last_updated": "2025-06-28T22:50:00+08:00",
+                      "source_retrieved": "https://en.wikipedia.org/wiki/Tanjong_Bungah"
+                    }
+                  }
+                ]
+              },
+              {
+                "name": "Teluk Bahang",
+                 "beaches": [
+                  {
+                     "id": "MY-PEN-TML-TBH-001",
+                     "name": "Pantai Kerachut",
+                     "location": {
+                       "city": "Teluk Bahang",
+                       "district": "Timur Laut",
+                       "state": "Pulau Pinang"
+                    },
+                    "headline": "A Pristine Nature Reserve with a Unique Meromictic Lake",
+                    "sub_headline": "Located within the Penang National Park, this secluded beach is a sanctuary for green turtles and features a rare lake where salt and fresh water don't mix.",
+                    "detailed_description": "Pantai Kerachut is a remote and beautiful beach accessible via a jungle trail through the Penang National Park or by boat. It is famous for two unique natural phenomena: a meromictic lake, where layers of freshwater and seawater do not mix, and as a nesting ground for Green Sea Turtles. A turtle sanctuary and hatchery is located at one end of the beach to protect the eggs and educate visitors. Its untouched beauty and tranquil atmosphere make it a perfect destination for nature lovers and those seeking solitude.",
+                    "images": [
+                      {
+                        "url": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Pantai_Kerachut_jetty.jpg",
+                        "caption": "The serene and secluded shoreline and jetty of Pantai Kerachut."
+                      },
+                      {
+                        "url": "https://live.staticflickr.com/8022/7201880480_5471c36a36_b.jpg",
+                        "caption": "The unique meromictic lake, a rare natural wonder."
+                      },
+                       {
+                        "url": "https://live.staticflickr.com/7222/7201878074_8081604a44_b.jpg",
+                        "caption": "The turtle conservation sanctuary at Pantai Kerachut."
+                      }
+                    ],
+                    "geolocation": {
+                      "latitude": 5.4402,
+                      "longitude": 100.1788
+                    },
+                    "links": {
+                      "Maps": "https://www.google.com/maps/place/Pantai+Kerachut/@5.440195,100.178822,17z/data=!3m1!4b1!4m6!3m5!1s0x304a89f38018765f:0x3c9b8caff9f45d80!8m2!3d5.440195!4d100.1813969!16s%2Fg%2F122k2l9r",
+                      "social_media": {
+                        "instagram_tag": "pantaikerachut",
+                        "facebook_page": null
+                      }
+                    },
+                    "attributes": {
+                      "activities": ["Jungle Trekking", "Wildlife Spotting", "Swimming", "Camping", "Turtle Watching"],
+                      "amenities": ["Turtle Sanctuary", "Campsite", "Basic Toilets"],
+                      "best_for": ["Nature Lovers", "Hikers", "Eco-tourists"],
+                      "is_public": true
+                    },
+                    "meta": {
+                      "last_updated": "2025-06-28T22:50:00+08:00",
+                      "source_retrieved": "https://www.penang-traveltips.com/pantai-kerachut.htm"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Kedah",
+        "districts": [
+          {
+            "name": "Langkawi",
+            "cities": [
+              {
+                "name": "Langkawi",
+                "beaches": [
+                  {
+                    "id": "MY-KED-LGK-LGK-001",
+                    "name": "Pantai Cenang",
+                    "location": {
+                      "island_group": "Langkawi",
+                      "city": "Langkawi",
+                      "district": "Langkawi",
+                      "state": "Kedah"
+                    },
+                    "headline": "Langkawi's Most Popular and Vibrant Beach Town",
+                    "sub_headline": "A stunning 2km stretch of white sand and clear waters, bustling with activities, restaurants, and a lively nightlife.",
+                    "detailed_description": "Pantai Cenang is the heart of Langkawi's tourism scene. The beach itself is a beautiful expanse of white sand, perfect for sunbathing and swimming. It offers a plethora of water sports, including jet-skiing and banana boating. The main road running parallel to the beach is lined with a diverse array of shops, duty-free outlets, spas, and restaurants catering to all tastes. Attractions like the Underwater World Langkawi are also located here. As evening falls, the beachfront bars and restaurants come alive, offering stunning sunset views and a vibrant atmosphere.",
+                    "images": [
+                      {
+                        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Cenang_Beach_view%2C_Langkawi.jpg/1280px-Cenang_Beach_view%2C_Langkawi.jpg",
+                        "caption": "The lively and popular beachfront of Pantai Cenang."
+                      },
+                      {
+                        "url": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Pantai_Cenang%2C_Langkawi%2C_Malaysia.jpg",
+                        "caption": "White sands and clear waters ideal for relaxation."
+                      }
+                    ],
+                    "geolocation": {
+                      "latitude": 6.2906,
+                      "longitude": 99.7262
+                    },
+                    "links": {
+                      "Maps": "https://www.google.com/maps/place/Pantai+Cenang/@6.2906203,99.726233,17z/data=!3m1!4b1!4m6!3m5!1s0x304c1c8f1a5f6c8f:0xd37568f123c5e31!8m2!3d6.2906203!4d99.7288079!16s%2Fm%2F02prx6c",
+                      "social_media": {
+                        "instagram_tag": "pantaicenang",
+                        "facebook_page": "https://www.facebook.com/pantaicenangofficial/"
+                      }
+                    },
+                    "attributes": {
+                      "activities": ["Swimming", "Jet Skiing", "Parasailing", "Shopping", "Dining"],
+                      "amenities": ["Hotels", "Resorts", "Restaurants", "Shops", "Spas", "Aquarium"],
+                      "best_for": ["Tourists", "Families", "Nightlife", "Shoppers"],
+                      "is_public": true
+                    },
+                    "meta": {
+                      "last_updated": "2025-06-28T22:50:00+08:00",
+                      "source_retrieved": "https://www.lonelyplanet.com/malaysia/pulau-langkawi/attractions/pantai-cenang/a/poi-sig/1213298/357005"
+                    }
+                  },
+                  {
+                    "id": "MY-KED-LGK-LGK-002",
+                    "name": "Tanjung Rhu Beach",
+                    "location": {
+                      "island_group": "Langkawi",
+                      "city": "Langkawi",
+                      "district": "Langkawi",
+                      "state": "Kedah"
+                    },
+                    "headline": "A Serene Escape with Breathtaking Limestone Islands",
+                    "sub_headline": "Known for its wide, powdery white sand and shallow, calm waters, offering stunning views and a tranquil atmosphere away from the crowds.",
+                    "detailed_description": "Tanjung Rhu is located on the northern coast of Langkawi and is considered one of its most beautiful beaches. The area is framed by ancient limestone caves and uninhabited islands. The water is shallow and clear, and during low tide, it's possible to walk across a sandbank to the nearby islands. It's a much more peaceful and secluded alternative to Pantai Cenang, home to some of the island's most luxurious resorts. The sunsets here are legendary, painting the sky with spectacular colors over the unique sea stacks.",
+                    "images": [
+                      {
+                        "url": "https://live.staticflickr.com/65535/53410651280_474ec6f5e2_b.jpg",
+                        "caption": "The serene and picturesque Tanjung Rhu beach."
+                      },
+                      {
+                        "url": "https://live.staticflickr.com/7838/47414929841_6a08609598_b.jpg",
+                        "caption": "Limestone sea stacks visible from the shore at sunset."
+                      }
+                    ],
+                    "geolocation": {
+                      "latitude": 6.4561,
+                      "longitude": 99.8219
+                    },
+                    "links": {
+                      "Maps": "https://www.google.com/maps/place/Tanjung+Rhu+Beach/@6.4561,99.8219,17z/data=!3m1!4b1!4m6!3m5!1s0x304c08c02a2a07c1:0xf8c4293e551399f9!8m2!3d6.4561!4d99.8244749!16s%2Fg%2F1215wz4s",
+                      "social_media": {
+                        "instagram_tag": "tanjungrhu",
+                        "facebook_page": null
+                      }
+                    },
+                    "attributes": {
+                      "activities": ["Swimming", "Relaxing", "Photography", "Kayaking"],
+                      "amenities": ["Luxury Resorts", "Restaurants", "Boat Tours"],
+                      "best_for": ["Couples", "Relaxation", "Scenery"],
+                      "is_public": true
+                    },
+                    "meta": {
+                      "last_updated": "2025-06-28T22:50:00+08:00",
+                      "source_retrieved": "https://www.lonelyplanet.com/malaysia/pulau-langkawi/attractions/tanjung-rhu/a/poi-sig/1213348/357005"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Pahang",
+        "districts": [
+          {
+            "name": "Rompin",
+            "cities": [
+              {
+                "name": "Pulau Tioman",
+                "beaches": [
+                  {
+                    "id": "MY-PHG-RMP-TIO-001",
+                    "name": "Juara Beach",
+                    "location": {
+                      "island_group": "Tioman Island",
+                      "city": "Pulau Tioman",
+                      "district": "Rompin",
+                      "state": "Pahang"
+                    },
+                    "headline": "A Secluded Paradise on Tioman's Eastern Coast",
+                    "sub_headline": "A long, beautiful stretch of golden sand, known for its tranquil vibe, surf-worthy waves, and vital turtle conservation project.",
+                    "detailed_description": "Juara Beach is a remote village and beach on the eastern side of Tioman Island, accessible by a 4WD vehicle across the island's central mountain range. This seclusion gives it a wonderfully untouched and peaceful atmosphere. The beach is divided into two parts by a small headland and is one of the best places on Tioman for surfing during the monsoon season. It is also home to the Juara Turtle Project, a vital conservation effort for sea turtles. With a handful of charming chalets and restaurants, it's the perfect escape for those looking to disconnect and enjoy nature.",
+                    "images": [
+                      {
+                        "url": "https://live.staticflickr.com/835/29124401888_03504f7b6a_b.jpg",
+                        "caption": "The long, golden sand stretch of Juara Beach."
+                      },
+                      {
+                        "url": "https://live.staticflickr.com/4363/35656360874_1bfbd054b4_b.jpg",
+                        "caption": "A volunteer at the Juara Turtle Project sanctuary."
+                      }
+                    ],
+                    "geolocation": {
+                      "latitude": 2.8025,
+                      "longitude": 104.2044
+                    },
+                    "links": {
+                      "Maps": "https://www.google.com/maps/place/Juara+Beach/@2.8025,104.2044,17z/data=!3m1!4b1!4m6!3m5!1s0x31c28c8d8f7b7e5b:0x5e95a97d391307b2!8m2!3d2.8025!4d104.2069749!16s%2Fg%2F11b6bxy96h",
+                      "social_media": {
+                        "instagram_tag": "juarabeach",
+                        "facebook_page": "https://www.facebook.com/JuaraTurtleProject/"
+                      }
+                    },
+                    "attributes": {
+                      "activities": ["Surfing", "Swimming", "Relaxing", "Turtle Watching", "Jungle Trekking"],
+                      "amenities": ["Chalets", "Restaurants", "Turtle Sanctuary"],
+                      "best_for": ["Eco-tourists", "Surfers", "Nature Lovers", "Backpackers"],
+                      "is_public": true
+                    },
+                    "meta": {
+                      "last_updated": "2025-06-28T22:50:00+08:00",
+                      "source_retrieved": "https://sandee.com/malaysia/pahang/tioman/juara-beach"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
