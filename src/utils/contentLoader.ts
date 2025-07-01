@@ -48,7 +48,10 @@ const transformBeachForUI = (contentBeach: ContentBeach): Beach => {
     description: contentBeach.detailed_description,
     rating: safeGet(contentBeach, 'user_content.ratings.average', 0),
     reviewCount: safeGet(contentBeach, 'user_content.ratings.count', 0),
-    images: (contentBeach.images || []).map(img => img.url),
+    images: (contentBeach.images || []).map(img => ({
+      url: img.url,
+      caption: img.caption
+    })),
     amenities: safeGet(contentBeach, 'attributes.amenities', []),
     activities: safeGet(contentBeach, 'attributes.activities', []),
     vibe: safeGet(contentBeach, 'attributes.best_for', []),

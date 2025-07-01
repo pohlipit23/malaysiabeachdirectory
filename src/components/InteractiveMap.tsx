@@ -139,8 +139,8 @@ const MapController: React.FC<{
               <div className="relative mb-3">
                 {beach.images && beach.images.length > 0 ? (
                   <img
-                    src={beach.images[0]}
-                    alt={beach.name}
+                    src={beach.images[0].url}
+                    alt={beach.images[0].caption || beach.name}
                     className="w-full h-32 object-cover rounded-lg"
                   />
                 ) : (
