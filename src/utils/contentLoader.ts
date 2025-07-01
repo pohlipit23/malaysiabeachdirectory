@@ -31,7 +31,13 @@ const getAllContentBeaches = (): ContentBeach[] => {
 // Transform content beach to UI beach format
 const transformBeachForUI = (contentBeach: ContentBeach): Beach => {
   const safeGet = (obj: any, path: string, defaultValue: any) => {
-    return path.split('.').reduce((acc, key) => acc && acc[key] !== 'undefined' ? acc[key] : defaultValue, obj);
+    const result = path.split('.').reduce((acc: any, key: string) => {
+      if (typeof acc === 'undefined' || typeof acc[key] === 'undefined') {
+        return undefined;
+      }
+      return acc[key];
+    }, obj);
+    return typeof result === 'undefined' ? defaultValue : result;
   };
 
   return {
