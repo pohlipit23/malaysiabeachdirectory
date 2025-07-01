@@ -1,6 +1,6 @@
 import { ContentData, ContentBeach, Beach } from '../types/Content';
 import contentData from '../data/content.json';
-import beachDataset from '../beach_dataset.json';
+import beachDataset from '../data/beach_dataset.json';
 
 // Beach dataset interface
 interface BeachDatasetItem {
