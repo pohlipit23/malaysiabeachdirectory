@@ -55,12 +55,12 @@ interface BeachDatasetItem {
 }
 
 // Load beach dataset
-export const getBeachDataset = (): BeachDatasetItem[] => {
+const getBeachDataset = (): BeachDatasetItem[] => {
   return beachDataset as BeachDatasetItem[];
 };
 
 // Transform beach dataset item to UI beach format
-export const transformDatasetBeachForUI = (datasetBeach: BeachDatasetItem): Beach => {
+const transformDatasetBeachForUI = (datasetBeach: BeachDatasetItem): Beach => {
   return {
     id: datasetBeach.id,
     name: datasetBeach.name,
@@ -90,7 +90,7 @@ export const transformDatasetBeachForUI = (datasetBeach: BeachDatasetItem): Beac
 };
 
 // Load and parse content data (keeping for backward compatibility)
-export const getContentData = (): ContentData => {
+const getContentData = (): ContentData => {
   return contentData as ContentData;
 };
 
@@ -101,7 +101,7 @@ export const getAllBeaches = (): Beach[] => {
 };
 
 // Get all beaches from original content data (for fallback)
-export const getAllContentBeaches = (): ContentBeach[] => {
+const getAllContentBeaches = (): ContentBeach[] => {
   const data = getContentData();
   const beaches: ContentBeach[] = [];
   
@@ -117,7 +117,7 @@ export const getAllContentBeaches = (): ContentBeach[] => {
 };
 
 // Transform content beach to UI beach format (keeping for backward compatibility)
-export const transformBeachForUI = (contentBeach: ContentBeach): Beach => {
+const transformBeachForUI = (contentBeach: ContentBeach): Beach => {
   // Generate mock data for fields not in content.json
   const mockRating = 4.2 + Math.random() * 0.8; // Random rating between 4.2-5.0
   const mockReviewCount = Math.floor(Math.random() * 500) + 50; // Random reviews 50-550
@@ -237,7 +237,7 @@ export const transformBeachForUI = (contentBeach: ContentBeach): Beach => {
 };
 
 // Get beaches by state from dataset
-export const getBeachesByState = (stateName: string): Beach[] => {
+const getBeachesByState = (stateName: string): Beach[] => {
   const dataset = getBeachDataset();
   return dataset
     .filter(beach => beach.state === stateName)
@@ -245,7 +245,7 @@ export const getBeachesByState = (stateName: string): Beach[] => {
 };
 
 // Get beach by ID from dataset
-export const getBeachById = (id: string): Beach | null => {
+const getBeachById = (id: string): Beach | null => {
   const dataset = getBeachDataset();
   const beach = dataset.find(beach => beach.id === id);
   return beach ? transformDatasetBeachForUI(beach) : null;
@@ -285,7 +285,7 @@ export const getAllStates = (): string[] => {
 };
 
 // Get all unique cities from dataset
-export const getAllCities = (): string[] => {
+const getAllCities = (): string[] => {
   const dataset = getBeachDataset();
   const cities = new Set<string>();
   
@@ -297,7 +297,7 @@ export const getAllCities = (): string[] => {
 };
 
 // Get beaches by city from dataset
-export const getBeachesByCity = (cityName: string): Beach[] => {
+const getBeachesByCity = (cityName: string): Beach[] => {
   const dataset = getBeachDataset();
   return dataset
     .filter(beach => beach.city.toLowerCase() === cityName.toLowerCase())
@@ -353,7 +353,7 @@ export const getFeaturedBeaches = (): Beach[] => {
 };
 
 // Get beaches by coordinates (for map clustering)
-export const getBeachesByBounds = (
+const getBeachesByBounds = (
   northEast: { lat: number; lng: number },
   southWest: { lat: number; lng: number }
 ): Beach[] => {
@@ -370,7 +370,7 @@ export const getBeachesByBounds = (
 };
 
 // Get statistics from dataset
-export const getDatasetStatistics = () => {
+const getDatasetStatistics = () => {
   const dataset = getBeachDataset();
   const states = getAllStates();
   const cities = getAllCities();

@@ -5,17 +5,17 @@ export interface ContentData {
   };
 }
 
-export interface State {
+interface State {
   name: string;
   districts: District[];
 }
 
-export interface District {
+interface District {
   name: string;
   cities: City[];
 }
 
-export interface City {
+interface City {
   name: string;
   beaches: ContentBeach[];
 }
@@ -67,7 +67,7 @@ export interface ContentBeach {
 }
 
 // Beach dataset interface (from beach_dataset.json)
-export interface BeachDatasetItem {
+interface BeachDatasetItem {
   id: string;
   name: string;
   state: string;
