@@ -229,7 +229,7 @@ const Homepage: React.FC<HomepageProps> = ({ onSearch, onBeachSelect }) => {
           <div className="relative">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {states.map((state, index) => {
-                const stateBeaches = featuredBeaches.filter(beach => beach.state === state);
+                const stateBeaches = allBeaches.filter(beach => beach.state === state);
                 return (
                   <button
                     key={index}
