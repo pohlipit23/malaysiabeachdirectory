@@ -1,5 +1,5 @@
 import { ContentData, ContentBeach, Beach } from '../types/Content';
-import contentData from '../data/content.json';
+import contentData from '../data/content.json' assert { type: 'json' };
 
 // Load and parse content data
 const getContentData = (): ContentData => {
