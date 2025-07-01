@@ -1,106 +1,12 @@
 import { ContentData, ContentBeach, Beach } from '../types/Content';
 import contentData from '../data/content.json';
-import beachDataset from '../data/beach_dataset.json';
 
-// Beach dataset interface
-interface BeachDatasetItem {
-  id: string;
-  name: string;
-  state: string;
-  city: string;
-  description: string;
-  lat: number;
-  lng: number;
-  images: string[];
-  activities: string[];
-  amenities: string[];
-  vibe: string[];
-  rating: number;
-  reviewCount: number;
-  waterTemp: number;
-  bestSeason: string;
-  safetyRating: number;
-  accessibility: string[];
-  nearbyHotels: Array<{
-    name: string;
-    rating: number;
-    price: string;
-    image: string;
-  }>;
-  tours: Array<{
-    name: string;
-    provider: string;
-    price: string;
-    duration: string;
-  }>;
-  reviews: Array<{
-    id: string;
-    author: string;
-    rating: number;
-    date: string;
-    title: string;
-    content: string;
-    images?: string[];
-  }>;
-  gettingThere: {
-    bycar: string;
-    byPublicTransport: string;
-    parking: string;
-  };
-  knowBeforeYouGo: {
-    whatToBring: string[];
-    safety: string[];
-    tips: string[];
-  };
-}
-
-// Load beach dataset
-const getBeachDataset = (): BeachDatasetItem[] => {
-  return beachDataset as BeachDatasetItem[];
-};
-
-// Transform beach dataset item to UI beach format
-const transformDatasetBeachForUI = (datasetBeach: BeachDatasetItem): Beach => {
-  return {
-    id: datasetBeach.id,
-    name: datasetBeach.name,
-    location: `${datasetBeach.city}, ${datasetBeach.state}`,
-    state: datasetBeach.state,
-    description: datasetBeach.description || '',
-    rating: datasetBeach.rating,
-    reviewCount: datasetBeach.reviewCount,
-    images: datasetBeach.images || [],
-    amenities: datasetBeach.amenities,
-    activities: datasetBeach.activities,
-    vibe: datasetBeach.vibe,
-    accessibility: datasetBeach.accessibility,
-    waterTemp: datasetBeach.waterTemp,
-    bestSeason: datasetBeach.bestSeason,
-    safetyRating: datasetBeach.safetyRating,
-    coordinates: {
-      lat: datasetBeach.lat,
-      lng: datasetBeach.lng
-    },
-    nearbyHotels: datasetBeach.nearbyHotels,
-    tours: datasetBeach.tours,
-    reviews: datasetBeach.reviews,
-    gettingThere: datasetBeach.gettingThere,
-    knowBeforeYouGo: datasetBeach.knowBeforeYouGo
-  };
-};
-
-// Load and parse content data (keeping for backward compatibility)
+// Load and parse content data
 const getContentData = (): ContentData => {
   return contentData as ContentData;
 };
 
-// Get all beaches from dataset
-export const getAllBeaches = (): Beach[] => {
-  const dataset = getBeachDataset();
-  return dataset.map(transformDatasetBeachForUI);
-};
-
-// Get all beaches from original content data (for fallback)
+// Get all beaches from content data
 const getAllContentBeaches = (): ContentBeach[] => {
   const data = getContentData();
   const beaches: ContentBeach[] = [];
@@ -116,7 +22,7 @@ const getAllContentBeaches = (): ContentBeach[] => {
   return beaches;
 };
 
-// Transform content beach to UI beach format (keeping for backward compatibility)
+// Transform content beach to UI beach format
 const transformBeachForUI = (contentBeach: ContentBeach): Beach => {
   // Generate mock data for fields not in content.json
   const mockRating = 4.2 + Math.random() * 0.8; // Random rating between 4.2-5.0
@@ -236,30 +142,33 @@ const transformBeachForUI = (contentBeach: ContentBeach): Beach => {
   };
 };
 
-// Get beaches by state from dataset
+// Get all beaches
+export const getAllBeaches = (): Beach[] => {
+  const contentBeaches = getAllContentBeaches();
+  return contentBeaches.map(transformBeachForUI);
+};
+
+// Get beaches by state
 const getBeachesByState = (stateName: string): Beach[] => {
-  const dataset = getBeachDataset();
-  return dataset
-    .filter(beach => beach.state === stateName)
-    .map(transformDatasetBeachForUI);
+  const allBeaches = getAllBeaches();
+  return allBeaches.filter(beach => beach.state === stateName);
 };
 
-// Get beach by ID from dataset
+// Get beach by ID
 const getBeachById = (id: string): Beach | null => {
-  const dataset = getBeachDataset();
-  const beach = dataset.find(beach => beach.id === id);
-  return beach ? transformDatasetBeachForUI(beach) : null;
+  const allBeaches = getAllBeaches();
+  return allBeaches.find(beach => beach.id === id) || null;
 };
 
-// Search beaches in dataset
+// Search beaches
 export const searchBeaches = (query: string): Beach[] => {
-  const dataset = getBeachDataset();
+  const allBeaches = getAllBeaches();
   const lowercaseQuery = query.toLowerCase();
   
-  const filteredBeaches = dataset.filter(beach => 
+  return allBeaches.filter(beach => 
     beach.name.toLowerCase().includes(lowercaseQuery) ||
     beach.state.toLowerCase().includes(lowercaseQuery) ||
-    beach.city.toLowerCase().includes(lowercaseQuery) ||
+    beach.location.toLowerCase().includes(lowercaseQuery) ||
     beach.description.toLowerCase().includes(lowercaseQuery) ||
     beach.activities.some(activity => 
       activity.toLowerCase().includes(lowercaseQuery)
@@ -268,80 +177,82 @@ export const searchBeaches = (query: string): Beach[] => {
       vibe.toLowerCase().includes(lowercaseQuery)
     )
   );
-  
-  return filteredBeaches.map(transformDatasetBeachForUI);
 };
 
-// Get all unique states from dataset
+// Get all unique states
 export const getAllStates = (): string[] => {
-  const dataset = getBeachDataset();
+  const data = getContentData();
   const states = new Set<string>();
   
-  dataset.forEach(beach => {
-    states.add(beach.state);
+  data.country.states.forEach(state => {
+    states.add(state.name);
   });
   
   return Array.from(states).sort();
 };
 
-// Get all unique cities from dataset
+// Get all unique cities
 const getAllCities = (): string[] => {
-  const dataset = getBeachDataset();
+  const data = getContentData();
   const cities = new Set<string>();
   
-  dataset.forEach(beach => {
-    cities.add(beach.city);
+  data.country.states.forEach(state => {
+    state.districts.forEach(district => {
+      district.cities.forEach(city => {
+        cities.add(city.name);
+      });
+    });
   });
   
   return Array.from(cities).sort();
 };
 
-// Get beaches by city from dataset
+// Get beaches by city
 const getBeachesByCity = (cityName: string): Beach[] => {
-  const dataset = getBeachDataset();
-  return dataset
-    .filter(beach => beach.city.toLowerCase() === cityName.toLowerCase())
-    .map(transformDatasetBeachForUI);
+  const allBeaches = getAllBeaches();
+  return allBeaches.filter(beach => 
+    beach.location.toLowerCase().includes(cityName.toLowerCase())
+  );
 };
 
-// Get all unique activities from dataset
+// Get all unique activities
 export const getAllActivities = (): string[] => {
-  const dataset = getBeachDataset();
+  const contentBeaches = getAllContentBeaches();
   const activities = new Set<string>();
   
-  dataset.forEach(beach => {
-    beach.activities.forEach(activity => activities.add(activity));
+  contentBeaches.forEach(beach => {
+    beach.attributes.activities.forEach(activity => activities.add(activity));
   });
   
   return Array.from(activities).sort();
 };
 
-// Get all unique amenities from dataset
+// Get all unique amenities
 export const getAllAmenities = (): string[] => {
-  const dataset = getBeachDataset();
+  const contentBeaches = getAllContentBeaches();
   const amenities = new Set<string>();
   
-  dataset.forEach(beach => {
-    beach.amenities.forEach(amenity => amenities.add(amenity));
+  contentBeaches.forEach(beach => {
+    beach.attributes.amenities.forEach(amenity => amenities.add(amenity));
   });
   
   return Array.from(amenities).sort();
 };
 
-// Get featured beaches from dataset (top rated beaches from each state)
+// Get featured beaches (top rated beaches from each state)
 export const getFeaturedBeaches = (): Beach[] => {
-  const dataset = getBeachDataset();
-  const stateGroups = new Map<string, BeachDatasetItem[]>();
+  const allBeaches = getAllBeaches();
+  const stateGroups = new Map<string, Beach[]>();
   
   // Group beaches by state
-  dataset.forEach(beach => {
+  allBeaches.forEach(beach => {
     if (!stateGroups.has(beach.state)) {
       stateGroups.set(beach.state, []);
     }
     stateGroups.get(beach.state)!.push(beach);
   });
   
-  const featured: BeachDatasetItem[] = [];
+  const featured: Beach[] = [];
   
   // Get top 2 highest rated beaches from each state
   stateGroups.forEach(beaches => {
@@ -349,7 +260,7 @@ export const getFeaturedBeaches = (): Beach[] => {
     featured.push(...sortedBeaches.slice(0, 2));
   });
   
-  return featured.map(transformDatasetBeachForUI);
+  return featured;
 };
 
 // Get beaches by coordinates (for map clustering)
@@ -357,29 +268,27 @@ const getBeachesByBounds = (
   northEast: { lat: number; lng: number },
   southWest: { lat: number; lng: number }
 ): Beach[] => {
-  const dataset = getBeachDataset();
+  const allBeaches = getAllBeaches();
   
-  return dataset
-    .filter(beach => 
-      beach.lat <= northEast.lat &&
-      beach.lat >= southWest.lat &&
-      beach.lng <= northEast.lng &&
-      beach.lng >= southWest.lng
-    )
-    .map(transformDatasetBeachForUI);
+  return allBeaches.filter(beach => 
+    beach.coordinates.lat <= northEast.lat &&
+    beach.coordinates.lat >= southWest.lat &&
+    beach.coordinates.lng <= northEast.lng &&
+    beach.coordinates.lng >= southWest.lng
+  );
 };
 
-// Get statistics from dataset
+// Get statistics
 const getDatasetStatistics = () => {
-  const dataset = getBeachDataset();
+  const allBeaches = getAllBeaches();
   const states = getAllStates();
   const cities = getAllCities();
   
-  const totalReviews = dataset.reduce((sum, beach) => sum + beach.reviewCount, 0);
-  const averageRating = dataset.reduce((sum, beach) => sum + beach.rating, 0) / dataset.length;
+  const totalReviews = allBeaches.reduce((sum, beach) => sum + beach.reviewCount, 0);
+  const averageRating = allBeaches.reduce((sum, beach) => sum + beach.rating, 0) / allBeaches.length;
   
   return {
-    totalBeaches: dataset.length,
+    totalBeaches: allBeaches.length,
     totalStates: states.length,
     totalCities: cities.length,
     totalReviews,
