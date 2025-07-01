@@ -27,9 +27,9 @@ const Header: React.FC<HeaderProps> = ({
                 <Compass className="w-8 h-8 text-white" />
               </div>
               <div>
-                <h1 className="text-2xl md:text-3xl font-playfair font-bold text-dark-slate">
+                <span className="block text-2xl md:text-3xl font-playfair font-bold text-dark-slate">
                   Pantai.my
-                </h1>
+                </span>
                 <p className="text-sm text-dark-slate/60 hidden md:block">Discover Malaysia's Hidden Paradises</p>
               </div>
             </div>
@@ -62,9 +62,9 @@ const Header: React.FC<HeaderProps> = ({
                   <Compass className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h1 className="text-xl font-playfair font-bold text-dark-slate">
-                    Pantai.my
-                  </h1>
+                <span className="block text-xl font-playfair font-bold text-dark-slate">
+                  Pantai.my
+                </span>
                   <p className="text-xs text-dark-slate/60 hidden md:block">Your Beach Journey</p>
                 </div>
               </div>
@@ -99,9 +99,9 @@ const Header: React.FC<HeaderProps> = ({
                   <Compass className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h1 className="text-xl font-playfair font-bold text-dark-slate">
-                    Pantai.my
-                  </h1>
+                <span className="block text-xl font-playfair font-bold text-dark-slate">
+                  Pantai.my
+                </span>
                   <p className="text-xs text-dark-slate/60 hidden md:block">Beach Story</p>
                 </div>
               </div>
@@ -141,9 +141,9 @@ const Header: React.FC<HeaderProps> = ({
                   <Compass className="w-6 h-6 text-white" />
                 </div>
                 <div>
-                  <h1 className="text-xl font-playfair font-bold text-dark-slate">
-                    Visit Malaysia 2026
-                  </h1>
+                <span className="block text-xl font-playfair font-bold text-dark-slate">
+                  Visit Malaysia 2026
+                </span>
                   <p className="text-xs text-dark-slate/60 hidden md:block">Truly Asia Campaign</p>
                 </div>
               </div>
