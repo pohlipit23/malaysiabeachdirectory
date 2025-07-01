@@ -18,13 +18,7 @@ const Homepage: React.FC<HomepageProps> = ({ onSearch, onBeachSelect }) => {
   const [selectedBeach, setSelectedBeach] = useState<Beach | null>(null);
 
   // Beautiful beach images for the hero carousel (no mountains)
-  const heroImages = [
-    'https://images.pexels.com/photos/1174732/pexels-photo-1174732.jpeg', // Tropical beach with palm trees
-    'https://images.pexels.com/photos/457882/pexels-photo-457882.jpeg', // Crystal clear turquoise water beach
-    'https://images.pexels.com/photos/1032650/pexels-photo-1032650.jpeg', // Pristine white sand beach
-    'https://images.pexels.com/photos/1001682/pexels-photo-1001682.jpeg', // Sunset beach scene
-    'https://images.pexels.com/photos/1450353/pexels-photo-1450353.jpeg' // Tropical paradise beach
-  ];
+  const heroImages = featuredBeaches.flatMap(beach => beach.images).slice(0, 5);
 
   useEffect(() => {
     setStates(getAllStates());

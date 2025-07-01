@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Star, MapPin, Thermometer, Calendar, Shield, Users, Waves, Car, Navigation, Camera, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
-import { Beach } from '../types/Beach';
+import { Beach, ContentBeach } from '../types/Content';
 
 interface BeachProfileProps {
   beach: Beach;

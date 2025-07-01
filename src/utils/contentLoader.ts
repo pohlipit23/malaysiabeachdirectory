@@ -14,7 +14,13 @@ const getAllContentBeaches = (): ContentBeach[] => {
   data.country.states.forEach(state => {
     state.districts.forEach(district => {
       district.cities.forEach(city => {
-        beaches.push(...city.beaches);
+        if (city.beaches) {
+          city.beaches.forEach(beach => {
+            if (beach.images && beach.images.length > 0) {
+              beaches.push(beach);
+            }
+          });
+        }
       });
     });
   });
@@ -24,120 +30,42 @@ const getAllContentBeaches = (): ContentBeach[] => {
 
 // Transform content beach to UI beach format
 const transformBeachForUI = (contentBeach: ContentBeach): Beach => {
-  // Generate mock data for fields not in content.json
-  const mockRating = 4.2 + Math.random() * 0.8; // Random rating between 4.2-5.0
-  const mockReviewCount = Math.floor(Math.random() * 500) + 50; // Random reviews 50-550
-  const mockWaterTemp = 26 + Math.floor(Math.random() * 4); // 26-29°C
-  const mockSafetyRating = Math.floor(Math.random() * 2) + 4; // 4-5
-  
-  // Determine best season based on location
-  const getBestSeason = (state: string): string => {
-    const eastCoastStates = ['Pahang', 'Terengganu', 'Kelantan'];
-    return eastCoastStates.includes(state) ? 'Mar - Oct' : 'Nov - Apr';
+  const safeGet = (obj: any, path: string, defaultValue: any) => {
+    return path.split('.').reduce((acc, key) => acc && acc[key] !== 'undefined' ? acc[key] : defaultValue, obj);
   };
-
-  // Generate mock nearby hotels
-  const generateMockHotels = (beachName: string) => [
-    {
-      name: `${beachName} Resort`,
-      rating: 4.2 + Math.random() * 0.6,
-      price: `From RM${Math.floor(Math.random() * 200) + 200}/night`,
-      image: 'https://images.pexels.com/photos/338504/pexels-photo-338504.jpeg'
-    },
-    {
-      name: `Seaside ${beachName} Hotel`,
-      rating: 4.0 + Math.random() * 0.8,
-      price: `From RM${Math.floor(Math.random() * 150) + 150}/night`,
-      image: 'https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg'
-    }
-  ];
-
-  // Generate mock tours
-  const generateMockTours = () => [
-    {
-      name: 'Island Hopping Adventure',
-      provider: 'Local Tours',
-      price: `RM${Math.floor(Math.random() * 50) + 50}/person`,
-      duration: `${Math.floor(Math.random() * 4) + 4} hours`
-    },
-    {
-      name: 'Snorkeling Experience',
-      provider: 'Marine Adventures',
-      price: `RM${Math.floor(Math.random() * 80) + 70}/person`,
-      duration: `${Math.floor(Math.random() * 2) + 3} hours`
-    }
-  ];
-
-  // Generate mock reviews
-  const generateMockReviews = () => [
-    {
-      id: '1',
-      author: 'Sarah Chen',
-      rating: 5,
-      date: '2024-10-15',
-      title: 'Absolutely stunning!',
-      content: contentBeach.sub_headline
-    },
-    {
-      id: '2',
-      author: 'Marcus Johnson',
-      rating: 4,
-      date: '2024-09-28',
-      title: 'Great experience',
-      content: 'Beautiful beach with excellent facilities. Highly recommended for families.'
-    }
-  ];
 
   return {
     id: contentBeach.id,
     name: contentBeach.name,
-    location: `${contentBeach.location.city}, ${contentBeach.location.state}`,
-    state: contentBeach.location.state,
+    location: `${safeGet(contentBeach, 'location.city', '')}, ${safeGet(contentBeach, 'location.state', '')}`,
+    state: safeGet(contentBeach, 'location.state', ''),
     description: contentBeach.detailed_description,
-    rating: Math.round(mockRating * 10) / 10,
-    reviewCount: mockReviewCount,
-    images: contentBeach.images.map(img => img.url),
-    amenities: contentBeach.attributes.amenities,
-    activities: contentBeach.attributes.activities,
-    vibe: contentBeach.attributes.best_for,
-    accessibility: ['Easy Access', 'Public Transport'],
-    waterTemp: mockWaterTemp,
-    bestSeason: getBestSeason(contentBeach.location.state),
-    safetyRating: mockSafetyRating,
+    rating: safeGet(contentBeach, 'user_content.ratings.average', 0),
+    reviewCount: safeGet(contentBeach, 'user_content.ratings.count', 0),
+    images: (contentBeach.images || []).map(img => img.url),
+    amenities: safeGet(contentBeach, 'attributes.amenities', []),
+    activities: safeGet(contentBeach, 'attributes.activities', []),
+    vibe: safeGet(contentBeach, 'attributes.best_for', []),
+    accessibility: [], // This information is not in content.json
+    waterTemp: 0, // This information is not in content.json
+    bestSeason: '', // This information is not in content.json
+    safetyRating: 0, // This information is not in content.json
     coordinates: {
-      lat: contentBeach.geolocation.latitude,
-      lng: contentBeach.geolocation.longitude
+      lat: safeGet(contentBeach, 'geolocation.latitude', 0),
+      lng: safeGet(contentBeach, 'geolocation.longitude', 0)
     },
-    nearbyHotels: generateMockHotels(contentBeach.name),
-    tours: generateMockTours(),
-    reviews: generateMockReviews(),
-    gettingThere: {
-      bycar: `Drive to ${contentBeach.location.city} and follow signs to ${contentBeach.name}. Parking available nearby.`,
-      byPublicTransport: `Take public transport to ${contentBeach.location.city}, then local transport to the beach.`,
-      parking: 'Public parking available. Fees may apply during peak seasons.'
+    nearbyHotels: [], // This information is not in content.json
+    tours: [], // This information is not in content.json
+    reviews: [], // This information is not in content.json
+    gettingThere: { // This information is not in content.json
+      bycar: '',
+      byPublicTransport: '',
+      parking: ''
     },
-    knowBeforeYouGo: {
-      whatToBring: [
-        'Sunscreen and hat',
-        'Swimming gear',
-        'Camera for photos',
-        'Cash for local purchases',
-        'Comfortable beach shoes'
-      ],
-      safety: [
-        'Follow local safety guidelines',
-        'Be aware of tide conditions',
-        'Stay hydrated',
-        'Respect marine life',
-        'Keep valuables secure'
-      ],
-      tips: [
-        'Visit early morning for fewer crowds',
-        'Try local food specialties',
-        'Respect local customs and environment',
-        'Check weather conditions before visiting',
-        'Bring reef-safe sunscreen'
-      ]
+    knowBeforeYouGo: { // This information is not in content.json
+      whatToBring: [],
+      safety: [],
+      tips: []
     }
   };
 };
@@ -233,10 +161,25 @@ export const getAllAmenities = (): string[] => {
   const amenities = new Set<string>();
   
   contentBeaches.forEach(beach => {
-    beach.attributes.amenities.forEach(amenity => amenities.add(amenity));
+    if (beach.attributes && beach.attributes.amenities) {
+      beach.attributes.amenities.forEach(amenity => amenities.add(amenity));
+    }
   });
   
   return Array.from(amenities).sort();
+};
+
+export const getAllVibes = (): string[] => {
+  const contentBeaches = getAllContentBeaches();
+  const vibes = new Set<string>();
+
+  contentBeaches.forEach(beach => {
+    if (beach.attributes && beach.attributes.best_for) {
+      beach.attributes.best_for.forEach(vibe => vibes.add(vibe));
+    }
+  });
+
+  return Array.from(vibes).sort();
 };
 
 // Get featured beaches (top rated beaches from each state)

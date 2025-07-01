@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { List, Map, Filter, Star, MapPin, Waves, Users, Car, Wifi, ArrowRight, Eye, Heart } from 'lucide-react';
 import { Beach, FilterOptions } from '../types/Content';
-import { searchBeaches, getAllActivities, getAllAmenities, getAllStates } from '../utils/contentLoader';
+import { searchBeaches, getAllActivities, getAllAmenities, getAllStates, getAllVibes } from '../utils/contentLoader';
 import InteractiveMap from './InteractiveMap';
 
 interface SearchResultsProps {
@@ -27,7 +27,7 @@ const SearchResults: React.FC<SearchResultsProps> = ({ searchQuery, onBeachSelec
   const [filterOptions, setFilterOptions] = useState({
     activities: [] as string[],
     amenities: [] as string[],
-    vibe: ['Families', 'Tourists', 'Nature Lovers', 'Eco-tourists', 'Couples', 'Relaxation'],
+    vibe: getAllVibes(),
     accessibility: ['Easy Access', 'Public Transport', 'Wheelchair Accessible', 'Paved Path'],
     states: [] as string[]
   });
