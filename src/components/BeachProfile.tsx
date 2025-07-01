@@ -33,8 +33,8 @@ const BeachProfile: React.FC<BeachProfileProps> = ({ beach, onWriteReview }) => 
         {/* Hero Gallery */}
         <div className="relative h-96 md:h-[500px] rounded-3xl overflow-hidden shadow-2xl mb-8">
           <img
-            src={beach.images[currentImageIndex]}
-            alt={beach.name}
+            src={beach.images[currentImageIndex].url}
+            alt={beach.images[currentImageIndex].caption || beach.name}
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-dark-slate/60 via-transparent to-transparent"></div>
@@ -257,8 +257,8 @@ const BeachProfile: React.FC<BeachProfileProps> = ({ beach, onWriteReview }) => 
                         onClick={() => setCurrentImageIndex(index)}
                       >
                         <img
-                          src={image}
-                          alt={`${beach.name} ${index + 1}`}
+                          src={image.url}
+                          alt={image.caption || `${beach.name} ${index + 1}`}
                           className="w-full h-full object-cover"
                         />
                       </div>

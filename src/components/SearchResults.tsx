@@ -311,8 +311,8 @@ const SearchResults: React.FC<SearchResultsProps> = ({ searchQuery, onBeachSelec
                     <div className="md:flex">
                       <div className="md:w-96 h-80 md:h-auto relative overflow-hidden">
                         <img
-                          src={beach.images[0]}
-                          alt={beach.name}
+                          src={beach.images[0].url}
+                          alt={beach.images[0].caption || beach.name}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-dark-slate/60 via-transparent to-transparent"></div>

@@ -127,7 +127,10 @@ export interface Beach {
   description: string;
   rating: number;
   reviewCount: number;
-  images: string[];
+  images: Array<{
+    url: string;
+    caption: string;
+  }>;
   amenities: string[];
   activities: string[];
   vibe: string[];

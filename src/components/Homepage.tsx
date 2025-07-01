@@ -65,9 +65,9 @@ const Homepage: React.FC<HomepageProps> = ({ onSearch, onBeachSelect }) => {
                 index === currentHeroIndex ? 'opacity-100' : 'opacity-0'
               }`}
             >
-              <div 
+              <div
                 className="w-full h-full bg-cover bg-center bg-no-repeat transform scale-105"
-                style={{ backgroundImage: `url(${image})` }}
+                style={{ backgroundImage: `url(${image.url})` }}
               />
             </div>
           ))}
