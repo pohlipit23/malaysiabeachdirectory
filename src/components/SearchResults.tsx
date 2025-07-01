@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { List, Map, Filter, Star, MapPin, Waves, Users, Car, Wifi, ArrowRight, Eye, Heart } from 'lucide-react';
 import { Beach, FilterOptions } from '../types/Content';
 import { searchBeaches, getAllActivities, getAllAmenities, getAllStates, getAllVibes } from '../utils/contentLoader';
@@ -105,6 +106,13 @@ const SearchResults: React.FC<SearchResultsProps> = ({ searchQuery, onBeachSelec
 
   return (
     <div className="min-h-screen pt-8 bg-gradient-to-b from-sandy-beige to-white">
+      <Helmet>
+        <title>Search results for {searchQuery} - Pantai.my</title>
+        <meta
+          name="description"
+          content={`Discover beaches matching "${searchQuery}" on Pantai.my.`}
+        />
+      </Helmet>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Cinematic Search Header */}
         <div className="mb-12 text-center">

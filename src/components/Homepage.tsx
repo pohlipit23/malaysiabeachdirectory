@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Search, MapPin, Star, Users, Waves, Camera, ArrowRight, Play, ChevronDown, Map } from 'lucide-react';
 import { getAllStates, getFeaturedBeaches, getAllBeaches } from '../utils/contentLoader';
 import { Beach } from '../types/Content';
@@ -54,6 +55,13 @@ const Homepage: React.FC<HomepageProps> = ({ onSearch, onBeachSelect }) => {
 
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>Pantai.my - Discover Malaysia's Beaches</title>
+        <meta
+          name="description"
+          content="Explore Malaysia's most beautiful beaches and plan your next getaway with Pantai.my."
+        />
+      </Helmet>
       {/* Immersive Hero Section */}
       <section className="relative h-screen overflow-hidden">
         {/* Background Image Carousel */}
