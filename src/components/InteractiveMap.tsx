@@ -137,11 +137,17 @@ const MapController: React.FC<{
           <Popup className="custom-popup">
             <div className="p-4 min-w-[280px] max-w-[320px]">
               <div className="relative mb-3">
-                <img
-                  src={beach.images[0]}
-                  alt={beach.name}
-                  className="w-full h-32 object-cover rounded-lg"
-                />
+                {beach.images && beach.images.length > 0 ? (
+                  <img
+                    src={beach.images[0]}
+                    alt={beach.name}
+                    className="w-full h-32 object-cover rounded-lg"
+                  />
+                ) : (
+                  <div className="w-full h-32 bg-gradient-to-r from-ocean-blue to-coral rounded-lg flex items-center justify-center">
+                    <Camera className="w-8 h-8 text-white" />
+                  </div>
+                )}
                 <div className="absolute top-2 right-2 bg-white/90 backdrop-blur-sm rounded-full px-2 py-1 flex items-center space-x-1">
                   <Star className="w-3 h-3 text-yellow-400 fill-current" />
                   <span className="text-xs font-bold">{beach.rating}</span>

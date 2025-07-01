@@ -69,7 +69,7 @@ const transformDatasetBeachForUI = (datasetBeach: BeachDatasetItem): Beach => {
     description: datasetBeach.description,
     rating: datasetBeach.rating,
     reviewCount: datasetBeach.reviewCount,
-    images: datasetBeach.images,
+    images: datasetBeach.images || [],
     amenities: datasetBeach.amenities,
     activities: datasetBeach.activities,
     vibe: datasetBeach.vibe,
