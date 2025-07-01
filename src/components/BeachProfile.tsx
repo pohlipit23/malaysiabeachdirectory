@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Star, MapPin, Thermometer, Calendar, Shield, Users, Waves, Car, Navigation, Camera, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 import { Beach, ContentBeach } from '../types/Content';
 
@@ -29,6 +30,30 @@ const BeachProfile: React.FC<BeachProfileProps> = ({ beach, onWriteReview }) => 
 
   return (
     <div className="min-h-screen pt-8">
+      <Helmet>
+        <title>{beach.name} - Pantai.my</title>
+        <meta name="description" content={beach.description} />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Beach',
+            name: beach.name,
+            description: beach.description,
+            image: beach.images[0],
+            aggregateRating: {
+              '@type': 'AggregateRating',
+              ratingValue: beach.rating,
+              reviewCount: beach.reviewCount,
+            },
+            address: {
+              '@type': 'PostalAddress',
+              addressLocality: beach.location,
+              addressRegion: beach.state,
+              addressCountry: 'Malaysia',
+            },
+          })}
+        </script>
+      </Helmet>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Hero Gallery */}
         <div className="relative h-96 md:h-[500px] rounded-3xl overflow-hidden shadow-2xl mb-8">

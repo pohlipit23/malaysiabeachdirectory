@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { 
   Calendar, 
   MapPin, 
@@ -90,6 +91,13 @@ const VisitMalaysia2026: React.FC<VisitMalaysia2026Props> = ({ onBeachSelect }) 
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-sandy-beige">
+      <Helmet>
+        <title>Visit Malaysia 2026 - Pantai.my</title>
+        <meta
+          name="description"
+          content="Discover Visit Malaysia 2026 destinations and plan your beach adventures with Pantai.my."
+        />
+      </Helmet>
       {/* Hero Section with VM2026 Branding */}
       <section className="relative py-32 px-4 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-red-50"></div>
