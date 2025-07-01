@@ -66,6 +66,58 @@ export interface ContentBeach {
   };
 }
 
+// Beach dataset interface (from beach_dataset.json)
+export interface BeachDatasetItem {
+  id: string;
+  name: string;
+  state: string;
+  city: string;
+  description: string;
+  lat: number;
+  lng: number;
+  images: string[];
+  activities: string[];
+  amenities: string[];
+  vibe: string[];
+  rating: number;
+  reviewCount: number;
+  waterTemp: number;
+  bestSeason: string;
+  safetyRating: number;
+  accessibility: string[];
+  nearbyHotels: Array<{
+    name: string;
+    rating: number;
+    price: string;
+    image: string;
+  }>;
+  tours: Array<{
+    name: string;
+    provider: string;
+    price: string;
+    duration: string;
+  }>;
+  reviews: Array<{
+    id: string;
+    author: string;
+    rating: number;
+    date: string;
+    title: string;
+    content: string;
+    images?: string[];
+  }>;
+  gettingThere: {
+    bycar: string;
+    byPublicTransport: string;
+    parking: string;
+  };
+  knowBeforeYouGo: {
+    whatToBring: string[];
+    safety: string[];
+    tips: string[];
+  };
+}
+
 // Transformed beach interface for UI components
 export interface Beach {
   id: string;

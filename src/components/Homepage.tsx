@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Search, MapPin, Star, Users, Waves, Camera, ArrowRight, Play, ChevronDown, Map } from 'lucide-react';
-import { getAllStates, getFeaturedBeaches, getAllBeaches, transformBeachForUI } from '../utils/contentLoader';
+import { getAllStates, getFeaturedBeaches, getAllBeaches } from '../utils/contentLoader';
 import { Beach } from '../types/Content';
 import InteractiveMap from './InteractiveMap';
 
@@ -17,7 +17,7 @@ const Homepage: React.FC<HomepageProps> = ({ onSearch, onBeachSelect }) => {
   const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
   const [selectedBeach, setSelectedBeach] = useState<Beach | null>(null);
 
-  // Beautiful beach images for the hero carousel
+  // Beautiful beach images for the hero carousel (no mountains)
   const heroImages = [
     'https://images.pexels.com/photos/1174732/pexels-photo-1174732.jpeg', // Tropical beach with palm trees
     'https://images.pexels.com/photos/457882/pexels-photo-457882.jpeg', // Crystal clear turquoise water beach
@@ -31,9 +31,8 @@ const Homepage: React.FC<HomepageProps> = ({ onSearch, onBeachSelect }) => {
     setFeaturedBeaches(getFeaturedBeaches());
     
     // Load all beaches for the map
-    const contentBeaches = getAllBeaches();
-    const transformedBeaches = contentBeaches.map(transformBeachForUI);
-    setAllBeaches(transformedBeaches);
+    const beaches = getAllBeaches();
+    setAllBeaches(beaches);
     
     // Auto-rotate hero images
     const interval = setInterval(() => {
