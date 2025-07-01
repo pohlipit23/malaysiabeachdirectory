@@ -109,9 +109,9 @@ const VisitMalaysia2026: React.FC<VisitMalaysia2026Props> = ({ onBeachSelect }) 
         <div className="relative max-w-7xl mx-auto text-center">
           {/* VM2026 Logo */}
           <div className="mb-12">
-            <img 
-              src="/faVMTA2026_Logo_CMYK_revNov2024.png" 
-              alt="Visit Malaysia 2026 - Truly Asia" 
+            <img
+              src="/faVMTA2026_Logo_CMYK_revNov2024.png"
+              alt="Visit Malaysia 2026 campaign logo showcasing Malaysia's beautiful beaches"
               className="h-32 md:h-40 mx-auto mb-8"
             />
           </div>
