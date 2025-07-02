@@ -17,25 +17,29 @@ const Homepage: React.FC<HomepageProps> = ({ onSearch, onBeachSelect }) => {
   const [allBeaches, setAllBeaches] = useState<Beach[]>([]);
   const [currentHeroIndex, setCurrentHeroIndex] = useState(0);
   const [selectedBeach, setSelectedBeach] = useState<Beach | null>(null);
-
-  // Beautiful beach images for the hero carousel (no mountains)
-  const heroImages = featuredBeaches.flatMap(beach => beach.images).slice(0, 5);
+  const [heroImages, setHeroImages] = useState<Beach['images']>([]);
 
   useEffect(() => {
     setStates(getAllStates());
-    setFeaturedBeaches(getFeaturedBeaches());
+    const currentFeaturedBeaches = getFeaturedBeaches();
+    setFeaturedBeaches(currentFeaturedBeaches);
+
+    // Beautiful beach images for the hero carousel (no mountains)
+    const currentHeroImages = currentFeaturedBeaches.flatMap(beach => beach.images).slice(0, 5);
+    setHeroImages(currentHeroImages);
     
     // Load all beaches for the map
     const beaches = getAllBeaches();
     setAllBeaches(beaches);
     
     // Auto-rotate hero images
-    const interval = setInterval(() => {
-      setCurrentHeroIndex((prev) => (prev + 1) % heroImages.length);
-    }, 6000);
-    
-    return () => clearInterval(interval);
-  }, []);
+    if (currentHeroImages.length > 0) {
+      const interval = setInterval(() => {
+        setCurrentHeroIndex((prev) => (prev + 1) % currentHeroImages.length);
+      }, 6000);
+      return () => clearInterval(interval);
+    }
+  }, [heroImages.length]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -65,40 +69,44 @@ const Homepage: React.FC<HomepageProps> = ({ onSearch, onBeachSelect }) => {
       {/* Immersive Hero Section */}
       <section className="relative h-screen overflow-hidden">
         {/* Background Image Carousel */}
-        <div className="absolute inset-0">
-          {heroImages.map((image, index) => (
-            <div
-              key={index}
-              className={`absolute inset-0 transition-opacity duration-2000 ${
-                index === currentHeroIndex ? 'opacity-100' : 'opacity-0'
-              }`}
-            >
-              <div
-                className="w-full h-full bg-cover bg-center bg-no-repeat transform scale-105"
-                style={{ backgroundImage: `url(${image.url})` }}
-              />
-            </div>
-          ))}
-          
-          {/* Cinematic Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-dark-slate/10 to-dark-slate/80"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-dark-slate/30 via-transparent to-dark-slate/30"></div>
-        </div>
+        {heroImages.length > 0 && (
+          <>
+            <div className="absolute inset-0">
+              {heroImages.map((image, index) => (
+                <div
+                  key={index}
+                  className={`absolute inset-0 transition-opacity duration-2000 ${
+                    index === currentHeroIndex ? 'opacity-100' : 'opacity-0'
+                  }`}
+                >
+                  <div
+                    className="w-full h-full bg-cover bg-center bg-no-repeat transform scale-105"
+                    style={{ backgroundImage: `url(${image.url})` }}
+                  />
+                </div>
+              ))}
 
-        {/* Floating Navigation Dots */}
-        <div className="absolute top-8 right-8 flex space-x-2 z-20">
-          {heroImages.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentHeroIndex(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentHeroIndex 
-                  ? 'bg-white scale-125' 
-                  : 'bg-white/50 hover:bg-white/75'
-              }`}
-            />
-          ))}
-        </div>
+              {/* Cinematic Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-dark-slate/10 to-dark-slate/80"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-dark-slate/30 via-transparent to-dark-slate/30"></div>
+            </div>
+
+            {/* Floating Navigation Dots */}
+            <div className="absolute top-8 right-8 flex space-x-2 z-20">
+              {heroImages.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentHeroIndex(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentHeroIndex
+                      ? 'bg-white scale-125'
+                      : 'bg-white/50 hover:bg-white/75'
+                  }`}
+                />
+              ))}
+            </div>
+          </>
+        )}
 
         {/* Hero Content */}
         <div className="relative z-10 h-full flex items-center justify-center">
