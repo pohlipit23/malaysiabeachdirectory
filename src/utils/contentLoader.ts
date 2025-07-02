@@ -195,24 +195,74 @@ export const getAllVibes = (): string[] => {
 export const getFeaturedBeaches = (): Beach[] => {
   const allBeaches = getAllBeaches();
   const stateGroups = new Map<string, Beach[]>();
-  
-  // Group beaches by state
+
+  // Normalize state names for consistent grouping (e.g., "Pulau Pinang" and "Penang")
+  const normalizeStateName = (name: string): string => {
+    const lowerName = name.toLowerCase();
+    if (lowerName.includes("penang") || lowerName.includes("pulau pinang")) return "penang";
+    // Add other normalizations if needed
+    return lowerName;
+  };
+
+  // Group beaches by normalized state name
   allBeaches.forEach(beach => {
-    if (!stateGroups.has(beach.state)) {
-      stateGroups.set(beach.state, []);
+    const normalizedState = normalizeStateName(beach.state);
+    if (!stateGroups.has(normalizedState)) {
+      stateGroups.set(normalizedState, []);
     }
-    stateGroups.get(beach.state)!.push(beach);
+    stateGroups.get(normalizedState)!.push(beach);
   });
-  
+
   const featured: Beach[] = [];
-  
-  // Get top 2 highest rated beaches from each state
-  stateGroups.forEach(beaches => {
-    const sortedBeaches = beaches.sort((a, b) => b.rating - a.rating);
-    featured.push(...sortedBeaches.slice(0, 2));
+
+  stateGroups.forEach(beachesInState => {
+    // 1. Filter for beaches with images
+    const beachesWithImages = beachesInState.filter(beach => beach.images && beach.images.length > 0);
+
+    if (beachesWithImages.length > 0) {
+      // 2. Sort by rating (descending), then by review count (descending) as a tie-breaker
+      const sortedBeaches = beachesWithImages.sort((a, b) => {
+        if (b.rating !== a.rating) {
+          return b.rating - a.rating;
+        }
+        return b.reviewCount - a.reviewCount;
+      });
+      featured.push(...sortedBeaches.slice(0, 2));
+    } else {
+      // Fallback: if no beaches with images have ratings,
+      // take any beaches with images from this state (still try to sort by rating if available)
+      const sortedAllBeachesInState = beachesInState.sort((a, b) => {
+        if (b.rating !== a.rating) {
+          return b.rating - a.rating;
+        }
+        return b.reviewCount - a.reviewCount;
+      });
+      const beachesWithImagesFallback = sortedAllBeachesInState.filter(beach => beach.images && beach.images.length > 0);
+      if (beachesWithImagesFallback.length > 0) {
+        featured.push(...beachesWithImagesFallback.slice(0, 2));
+      }
+      // If still no beaches with images, this state won't contribute to featured beaches.
+    }
   });
+
+  // Ensure we have a good selection of unique beaches if states provided too few or overlapping top beaches
+  const uniqueFeatured = Array.from(new Map(featured.map(beach => [beach.id, beach])).values());
+
+  // If after all this, we still don't have enough (e.g. 5 for carousel),
+  // add more from the general pool of beaches with images, sorted by rating.
+  if (uniqueFeatured.length < 5) {
+    const additionalBeachesNeeded = 5 - uniqueFeatured.length;
+    const allBeachesWithImages = allBeaches.filter(b => b.images && b.images.length > 0 && !uniqueFeatured.find(fb => fb.id === b.id));
+    allBeachesWithImages.sort((a, b) => {
+      if (b.rating !== a.rating) {
+        return b.rating - a.rating;
+      }
+      return b.reviewCount - a.reviewCount;
+    });
+    uniqueFeatured.push(...allBeachesWithImages.slice(0, additionalBeachesNeeded));
+  }
   
-  return featured;
+  return uniqueFeatured;
 };
 
 // Get beaches by coordinates (for map clustering)
